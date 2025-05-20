@@ -1,13 +1,13 @@
 package main
 
 import (
-	_ "FlowTasker/internal/packed"
-
+	"github.com/MyProject273/FlowTasker/internal/cmd"
+	"github.com/MyProject273/FlowTasker/internal/storage/postgres"
 	"github.com/gogf/gf/v2/os/gctx"
-
-	"FlowTasker/internal/cmd"
 )
 
 func main() {
+	db := postgres.GetDatabaseConnection()
 	cmd.Main.Run(gctx.GetInitCtx())
+	defer db.Close()
 }
